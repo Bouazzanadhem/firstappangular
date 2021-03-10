@@ -1,10 +1,10 @@
 <div class="container">
     <div style="margin: 30px">
         <h1>register</h1>
-        <form [formGroup]="loginForm">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
             <div class="form-group">
               <label>First Name</label>
-              <input class="form-control" formControlName="fname" type="text" />
+              <input class="form-control" formControlName="fname" type="text" placeholder="First Name">
             </div>
             <!-- <div class="error-messages">
               <ng-container *ngFor="let error of error_messages.fname">
@@ -15,7 +15,7 @@
             </div> -->
             <div class="form-group">
                 <label>Last Name</label>
-                <input class="form-control" formControlName="lname" type="text" />
+                <input class="form-control" formControlName="lname" type="text" placeholder="Last Name">
             </div>
             <!-- <div class="error-messages">
 				<ng-container *ngFor="let error of error_messages.lname">
@@ -26,7 +26,7 @@
 			</div> -->
             <div class="form-group">
                 <label>E-mail</label>
-                <input class="form-control" formControlName="email" type="email">
+                <input class="form-control" formControlName="email" type="email" placeholder="E-mail">
             </div>
             <!-- <div class="error-messages">
 				<ng-container *ngFor="let error of error_messages.email">
@@ -37,8 +37,12 @@
 				</ng-container>
 			</div> -->
             <div class="form-group">
+              <label>E-mail Confirmation</label>
+              <input class="form-control" formControlName="confirmemail" type="email" placeholder="Confirm E-mail">
+            </div>
+            <div class="form-group">
               <label>Password</label>
-              <input class="form-control" formControlName="password" type="password" />
+              <input class="form-control" formControlName="password" type="password" placeholder="Password">
             </div>
             <!-- <div class="error-messages">
               <ng-container *ngFor="let error of error_messages.password">
@@ -49,7 +53,7 @@
             </div> -->
             <div class="form-group">
                 <label>Confirm Password</label>
-                <input class="form-control" formControlName="Confirmpassword" type="password">
+                <input class="form-control" formControlName="confirmpassword" type="password" placeholder="Confirm Password">
             </div>
             <!-- <div class="error-messages">
 				<ng-container *ngFor="let error of error_messages.confirmpassword">
@@ -58,7 +62,7 @@
 					</div>
 				</ng-container>
 			</div> -->
-            <button class="form-control btn btn-primary">Signup</button>
+            <button class="form-control btn btn-primary" type="submit">Signup</button>
         </form>
     </div>
 </div>

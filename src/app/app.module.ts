@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { Page404Component } from './page404/page404.component';
 
 
 @NgModule({
@@ -15,6 +18,9 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    NavbarComponent,
+    FooterComponent,
+    Page404Component,
 
   ],
   imports: [

@@ -8,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  profileForm = new FormGroup({
+  loginForm = new FormGroup({
     number1: new FormControl(''),
     number2: new FormControl(''),
   });
