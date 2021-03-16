@@ -24,19 +24,33 @@
       </mat-form-field>
 </form> -->
 
-<div class="container">
-  <div style="margin: 30px;">
+<div class="container row">
+  <div class="offset-3 col-6">
     <h1>Login</h1>
     <form [formGroup]="loginForm">
       <div class="form-group">
         <label for="">E-mail</label>
-        <input type="email" class="form-control" formControlName="email" placeholder="E-mail">
+        <input type="email" class="form-control" formControlName="email" placeholder="E-mail"
+        [ngClass]="{ 'is-invalid': submitted && loginForm.controls.email.hasError }">
       </div>
+      <mat-error *ngIf="submitted && loginForm.controls.email.hasError('required')">
+        E-mail is required
+      </mat-error>
+      <mat-error *ngIf="submitted && loginForm.controls.email.hasError('email')">
+        E-mail is invalid
+      </mat-error>
       <div class="form-group">
         <label>Password</label>
-        <input class="form-control" formControlName="password" type="password" placeholder="Password">
+        <input class="form-control" formControlName="password" type="password" placeholder="Password" 
+        [ngClass]="{ 'is-invalid': submitted && loginForm.controls.password.hasError }">
       </div>
-      <button class="form-control btn btn-primary">Log in</button>
+      <mat-error *ngIf="submitted && loginForm.controls.password.hasError('required')">
+        Password is required
+      </mat-error>
+      <mat-error *ngIf="submitted && loginForm.controls.password.hasError('minlength')">
+        Password is invalid
+      </mat-error>
+      <button class="form-control btn btn-primary" style="margin: 10px auto;" (click)="login()">Log in</button>
     </form>
   </div>
 </div>
