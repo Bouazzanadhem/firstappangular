@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FormarrayComponent } from './formarray/formarray.component';
 import { LoginComponent } from './login/login.component';
 import { Page404Component } from './page404/page404.component';
 import { RegisterComponent } from './register/register.component';
@@ -16,6 +17,9 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },{
+    path:'Skills',
+    component: FormarrayComponent
   },{
     path: '**',
     component: Page404Component

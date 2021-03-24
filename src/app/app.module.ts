@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { Page404Component } from './page404/page404.component';
+import { FormarrayComponent } from './formarray/formarray.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { Page404Component } from './page404/page404.component';
     NavbarComponent,
     FooterComponent,
     Page404Component,
+    FormarrayComponent,
 
   ],
   imports: [
