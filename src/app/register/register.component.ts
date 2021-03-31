@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  AbstractControlOptions, FormControl, FormGroup, Validators } from '@angular/forms';
+import {  AbstractControl, AbstractControlOptions, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 // import { MustMatch } from '@app/_helpers';
 
@@ -13,14 +13,15 @@ export class RegisterComponent implements OnInit {
   submitted= false;
   // formOptions: AbstractControlOptions = { validators: MustMatch('password', 'confirmpassword') };
   registerForm:  FormGroup = new FormGroup({
-    fname: new FormControl('',[Validators.required]),
-    lname: new FormControl('',[Validators.required]),
+    fname: new FormControl('',[Validators.required, this.forbiddenNameValidator(/admin/)]),
+    lname: new FormControl('',[Validators.required,this.forbiddenNameValidator(/admin/)]),
     email: new FormControl('',[Validators.required, Validators.email]),
     confirmemail: new FormControl('',[Validators.required, Validators.email]),
-    password: new FormControl('',[Validators.required, Validators.minLength(8)]),
-    confirmpassword: new FormControl('',[Validators.required, Validators.minLength(8)])
+    password: new FormControl('',[Validators.required, Validators.minLength(6)]),
+    confirmpassword: new FormControl('',[Validators.required, Validators.minLength(6)]),
+  },{
+    validators: [this.passwordValidator , this.emailValidator]
   });
-  // ,this.formOptions
   constructor(public route: Router) {  }
   ngOnInit(): void {
   }
@@ -37,8 +38,33 @@ export class RegisterComponent implements OnInit {
     this.route.navigate(['/app-login'])
     
   }
-  // password(formGroup: FormGroup){
-  //   const {value: password } =  formGroup.get('password');
-    
-  // }
+  emailValidator(group:AbstractControl):{[key:string]:boolean} | null{
+    const email = group.get('email');
+    const confirmemail = group.get('confirmemail');
+    if (email?.pristine || confirmemail?.pristine){
+      return null;
+    }
+    return email && confirmemail && email.value !== confirmemail.value ?
+    {'misMatch1': true } :
+    null ;
+  }
+  passwordValidator(group: AbstractControl):  {[key:string]:boolean} | null{
+    const  password  =  group.get('password');
+    const confirmPassword  = group.get('confirmpassword');
+    console.log(password?.value , confirmPassword?.value);
+    if (password?.pristine || confirmPassword?.pristine){
+      return null ;
+    }
+    return password && confirmPassword && password.value !== confirmPassword.value ?
+    {'misMatch': true } :
+    null ;
+  }
+
+  forbiddenNameValidator(forbiddenName: RegExp): ValidatorFn {
+    return (control:AbstractControl): {[key:string]:any} | null => {
+      const forbidden = forbiddenName.test(control.value);
+      return forbidden ? {'forbiddenName': {value: control.value}} : null;
+    };
+  }
+
 }

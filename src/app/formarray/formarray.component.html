@@ -22,7 +22,7 @@
               <Label>Skills :</Label>
             <button class="btn btn-success ml-1" type="button" (click)="addRow()"><i class="fa fa-plus"></i> Add</button>
             <button class="btn btn-danger ml-1" type="button" (click)="removeLastRow()"><i class="fa fa-trash"></i> Del Last Skill</button>
-            <button class="btn btn-danger ml-1" type="button" (click)="removeallRow()" ><i class="fa fa-trash"></i> Fel All Skills</button>
+            <button class="btn btn-danger ml-1" type="button" (click)="removeallRow()" ><i class="fa fa-trash"></i> Del All Skills</button>
             <div formArrayName="skills">
               <div *ngFor="let group of getskills.controls; let i=index" >
                 <div [formGroupName]="i" class="row">
